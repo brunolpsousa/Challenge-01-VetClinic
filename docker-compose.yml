@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: db
+    restart: always
+    image: mongo:6.0.8
+    ports:
+      - ${DB_PORT}:27017
+    environment:
+      MONGO_INITDB_DATABASE: ${DB_NAME}
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - ${MONGO_EXPRESS_PORT}:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://db:${DB_PORT}/
+
+  api:
+    depends_on:
+      - db
+    container_name: api
+    restart: always
+    build: .
+    user: node:node
+    ports:
+      - ${PORT}:3000
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: npm start
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '5'
