@@ -29,3 +29,25 @@ export const getPet = wrapper(
     res.status(200).json({ pet })
   },
 )
+
+export const deletePet = wrapper(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { petId, tutorId } = req.params
+
+    const pet = await Tutor.findOneAndUpdate(
+      { _id: tutorId, pets: { $elemMatch: { _id: petId } } },
+      { $pull: { pets: { _id: petId } } },
+    )
+
+    if (!pet) {
+      return next(
+        createCustomError(
+          404,
+          `No pet with id: ${petId} for tutor with id: ${tutorId}`,
+        ),
+      )
+    }
+
+    res.status(200).send()
+  },
+)
