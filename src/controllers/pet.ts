@@ -3,6 +3,14 @@ import { createCustomError } from '../middleware/errorHandler'
 import Tutor from '../models/Tutor'
 import wrapper from '../middleware/wrapper'
 
+export const createPet = wrapper(async (req: Request, res: Response) => {
+  const { tutorId } = req.params
+  const tutor = await Tutor.find({ _id: tutorId })
+  tutor[0].pets.push(req.body)
+  tutor[0].save()
+  return res.status(200).json(tutor)
+})
+
 export const getPet = wrapper(
   async (req: Request, res: Response, next: NextFunction) => {
     const { petId, tutorId } = req.params
