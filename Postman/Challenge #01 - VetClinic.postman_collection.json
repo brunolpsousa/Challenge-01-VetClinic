@@ -1,0 +1,306 @@
+{
+	"info": {
+		"_postman_id": "c16595d4-9f9a-4ffe-9496-f274b2b01a76",
+		"name": "Challenge #01 - VetClinic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28779877"
+	},
+	"item": [
+		{
+			"name": "Get all tutors",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tutors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tutors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get pet",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pet/:petId/tutor/:tutorId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pet",
+						":petId",
+						"tutor",
+						":tutorId"
+					],
+					"variable": [
+						{
+							"key": "petId",
+							"value": ""
+						},
+						{
+							"key": "tutorId",
+							"value": ""
+						}
+					]
+				},
+				"description": "### You must provide petId and tutorId as they are dynamic"
+			},
+			"response": []
+		},
+		{
+			"name": "Create tutor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"John Doe\",\n    \"phone\": \"5500998765432\",\n    \"email\": \"example@email.com\",\n    \"date_of_birth\": \"1993-12-12 10:10\",\n    \"zip_code\": \"617600000\",\n    \"pets\": {\n        \"name\": \"Lilo\",\n        \"species\": \"dog\",\n        \"carry\": \"s\",\n        \"weight\": 5,\n        \"date_of_birth\":\"1993-12-12 10:10\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tutor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tutor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create pet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Milo\",\n    \"species\": \"cat\",\n    \"carry\": \"l\",\n    \"weight\": 10,\n    \"date_of_birth\":\"1998-6-25 16:40\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pet/:tutorId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pet",
+						":tutorId"
+					],
+					"variable": [
+						{
+							"key": "tutorId",
+							"value": null
+						}
+					]
+				},
+				"description": "### You must provide tutorId as it is dynamic"
+			},
+			"response": []
+		},
+		{
+			"name": "Update tutor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Doug Joe\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tutor/:tutorId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tutor",
+						":tutorId"
+					],
+					"variable": [
+						{
+							"key": "tutorId",
+							"value": null
+						}
+					]
+				},
+				"description": "### You must provide tutorId as it is dynamic"
+			},
+			"response": []
+		},
+		{
+			"name": "Update pet",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"José\",\n    \"species\": \"Papagaio\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pet/:petId/tutor/:tutorId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pet",
+						":petId",
+						"tutor",
+						":tutorId"
+					],
+					"variable": [
+						{
+							"key": "petId",
+							"value": null
+						},
+						{
+							"key": "tutorId",
+							"value": null
+						}
+					]
+				},
+				"description": "### You must provide petId and tutorId as they are dynamic"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete tutor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tutor/:tutorId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tutor",
+						":tutorId"
+					],
+					"variable": [
+						{
+							"key": "tutorId",
+							"value": null
+						}
+					]
+				},
+				"description": "### You must provide tutorId as it is dynamic"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete pet",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pet/:petId/tutor/:tutorId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pet",
+						":petId",
+						"tutor",
+						":tutorId"
+					],
+					"variable": [
+						{
+							"key": "petId",
+							"value": null
+						},
+						{
+							"key": "tutorId",
+							"value": null
+						}
+					]
+				},
+				"description": "### You must provide petId and tutorId as they are dynamic"
+			},
+			"response": []
+		}
+	]
+}
