@@ -1,12 +1,16 @@
 import express from 'express'
 import connectDB from './db/db'
+import errorHandler from './middleware/errorHandler'
 require('dotenv').config()
 
 const app = express()
 const PORT = process.env.PORT || 3000
 
-app.get('/', (_: express.Request, res: express.Response) =>
-  res.send('Hello, world!'),
+app.use(express.json())
+
+app.use(errorHandler)
+app.use((_: express.Request, res: express.Response) =>
+  res.status(404).send('Route does not exist'),
 )
 
 const server = async () => {
