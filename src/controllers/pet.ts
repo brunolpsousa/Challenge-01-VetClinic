@@ -37,7 +37,7 @@ export const getPet = wrapper(
 
     const pet = findPet.pets[0]
 
-    res.status(200).json({ pet })
+    res.status(200).json(pet)
   },
 )
 
@@ -96,7 +96,6 @@ export const updatePet = wrapper(
       { $set: { 'pets.$': req.body } },
       { new: true, runValidators: true },
     )
-
-    res.status(200).json({ pet })
+    res.status(200).json(pet)
   },
 )
