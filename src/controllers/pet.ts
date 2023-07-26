@@ -66,16 +66,21 @@ export const deletePet = wrapper(
 export const updatePet = wrapper(
   async (req: Request, res: Response, next: NextFunction) => {
     const { petId, tutorId } = req.params
-
-    const findPet = await Tutor.findOne(
+    const updatePet = await Tutor.findOneAndUpdate(
+      { _id: tutorId, pets: { $elemMatch: { _id: petId } } },
       {
-        _id: tutorId,
-        pets: { $elemMatch: { _id: petId } },
+        $set: {
+          'pets.$.name': req.body.name,
+          'pets.$.species': req.body.species,
+          'pets.$.carry': req.body.carry,
+          'pets.$.weight': req.body.weight,
+          'pets.$.date_of_birth': req.body.date_of_birth,
+        },
       },
-      { 'pets.$': 1 },
+      { new: true, runValidators: true },
     )
 
-    if (!findPet) {
+    if (!updatePet) {
       return next(
         createCustomError(
           404,
@@ -84,18 +89,14 @@ export const updatePet = wrapper(
       )
     }
 
-    const oldPet = findPet.pets[0]
-    req.body.name ??= oldPet.name
-    req.body.species ??= oldPet.species
-    req.body.carry ??= oldPet.carry
-    req.body.weight ??= oldPet.weight
-    req.body.date_of_birth ??= oldPet.date_of_birth
-
-    const pet = await Tutor.findOneAndUpdate(
-      { _id: tutorId, pets: { $elemMatch: { _id: petId } } },
-      { $set: { 'pets.$': req.body } },
-      { new: true, runValidators: true },
+    const returnPet = await Tutor.findOne(
+      {
+        _id: tutorId,
+        pets: { $elemMatch: { _id: petId } },
+      },
+      { 'pets.$': 1 },
     )
+    const pet = returnPet.pets[0]
     res.status(200).json(pet)
   },
 )
