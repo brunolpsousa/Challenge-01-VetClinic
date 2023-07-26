@@ -5,10 +5,13 @@ import wrapper from '../middleware/wrapper'
 
 export const createPet = wrapper(async (req: Request, res: Response) => {
   const { tutorId } = req.params
-  const tutor = await Tutor.find({ _id: tutorId })
-  tutor[0].pets.push(req.body)
-  tutor[0].save()
-  return res.status(200).json(tutor)
+  const newPet = await Tutor.findOneAndUpdate(
+    { _id: tutorId },
+    { $push: { pets: req.body } },
+    { new: true, runValidators: true },
+  )
+  const pet = newPet.pets[newPet.pets.length - 1]
+  return res.status(200).json(pet)
 })
 
 export const getPet = wrapper(
