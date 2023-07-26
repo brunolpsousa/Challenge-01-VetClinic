@@ -33,7 +33,7 @@
 						"tutors"
 					]
 				},
-				"description": "##### Returns all tutors in database:\n\n``` json\n{\n    \"tutor\": {\n        \"name\": \"John Doe\",\n        \"phone\": \"5500998765432\",\n        \"email\": \"example@email.com\",\n        \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n        \"zip_code\": \"617600000\",\n        \"pets\": [\n            {\n                \"name\": \"Lilo\",\n                \"species\": \"dog\",\n                \"carry\": \"s\",\n                \"weight\": 5,\n                \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n                \"_id\": \"64c15d8e4234c0e539203f67\"\n            }\n        ],\n        \"_id\": \"64c15d8e4234c0e539203f66\",\n        \"__v\": 0\n    }\n}\n\n ```"
+				"description": "##### Returns all tutors in database:\n\n``` json\n{\n  \"name\": \"John Doe\",\n  \"phone\": \"5500998765432\",\n  \"email\": \"example@email.com\",\n  \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n  \"zip_code\": \"617600000\",\n  \"pets\": [\n    {\n      \"name\": \"Lilo\",\n      \"species\": \"dog\",\n      \"carry\": \"s\",\n      \"weight\": 5,\n      \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n      \"_id\": \"64c164fe4234c0e539203f71\"\n    }\n  ],\n  \"_id\": \"64c164fe4234c0e539203f70\",\n  \"__v\": 0\n}\n```"
 			},
 			"response": []
 		},
@@ -77,7 +77,7 @@
 						}
 					]
 				},
-				"description": "#### You must provide petId and tutorId as they are dynamic\n\n##### Returns a pet with the corresponding id:\n```json\n{\n    \"pet\": {\n        \"name\": \"Lilo\",\n        \"species\": \"dog\",\n        \"carry\": \"s\",\n        \"weight\": 5,\n        \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n        \"_id\": \"64c15d8e4234c0e539203f67\"\n    }\n}\n```"
+				"description": "#### You must provide petId and tutorId as they are dynamic\n\n##### Returns a pet with the corresponding id:\n\n``` json\n{\n  \"name\": \"Lilo\",\n  \"species\": \"dog\",\n  \"carry\": \"s\",\n  \"weight\": 5,\n  \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n  \"_id\": \"64c15d8e4234c0e539203f67\"\n}\n```"
 			},
 			"response": []
 		},
@@ -105,7 +105,7 @@
 						"tutor"
 					]
 				},
-				"description": "##### Returns the created tutor object:\n```json\n{\n    \"tutor\": {\n        \"name\": \"John Doe\",\n        \"phone\": \"5500998765432\",\n        \"email\": \"example@email.com\",\n        \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n        \"zip_code\": \"617600000\",\n        \"pets\": [\n            {\n                \"name\": \"Lilo\",\n                \"species\": \"dog\",\n                \"carry\": \"s\",\n                \"weight\": 5,\n                \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n                \"_id\": \"64c164fe4234c0e539203f71\"\n            }\n        ],\n        \"_id\": \"64c164fe4234c0e539203f70\",\n        \"__v\": 0\n    }\n}\n```"
+				"description": "##### Returns the created tutor object:\n\n``` json\n{\n  \"name\": \"John Doe\",\n  \"phone\": \"5500998765432\",\n  \"email\": \"example@email.com\",\n  \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n  \"zip_code\": \"617600000\",\n  \"pets\": [\n    {\n      \"name\": \"Lilo\",\n      \"species\": \"dog\",\n      \"carry\": \"s\",\n      \"weight\": 5,\n      \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n      \"_id\": \"64c15d8e4234c0e539203f67\"\n    }\n  ],\n  \"_id\": \"64c15d8e4234c0e539203f66\",\n  \"__v\": 0\n}\n```"
 			},
 			"response": []
 		},
@@ -140,7 +140,7 @@
 						}
 					]
 				},
-				"description": "### You must provide tutorId as it is dynamic\n\n##### Returns the parent tutor object with the created pet:\n```json\n[\n    {\n        \"_id\": \"64c164fe4234c0e539203f70\",\n        \"name\": \"John Doe\",\n        \"phone\": \"5500998765432\",\n        \"email\": \"example@email.com\",\n        \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n        \"zip_code\": \"617600000\",\n        \"pets\": [\n            {\n                \"name\": \"Lilo\",\n                \"species\": \"dog\",\n                \"carry\": \"s\",\n                \"weight\": 5,\n                \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n                \"_id\": \"64c164fe4234c0e539203f71\"\n            },\n            {\n                \"name\": \"Milo\",\n                \"species\": \"cat\",\n                \"carry\": \"l\",\n                \"weight\": 10,\n                \"date_of_birth\": \"1998-06-25T16:40:00.000Z\",\n                \"_id\": \"64c165db4234c0e539203f75\"\n            }\n        ],\n        \"__v\": 0\n    }\n]\n```"
+				"description": "### You must provide tutorId as it is dynamic\n\n##### Returns the parent tutor object with the created pet:\n\n``` json\n{\n  \"name\": \"Milo\",\n  \"species\": \"cat\",\n  \"carry\": \"l\",\n  \"weight\": 10,\n  \"date_of_birth\": \"1998-06-25T16:40:00.000Z\",\n  \"_id\": \"64c165db4234c0e539203f75\"\n}\n\n ```"
 			},
 			"response": []
 		},
@@ -175,7 +175,7 @@
 						}
 					]
 				},
-				"description": "### You must provide tutorId as it is dynamic\n\n##### Returns the updated tutor object:\n```json\n{\n    \"tutor\": {\n        \"_id\": \"64c164fe4234c0e539203f70\",\n        \"name\": \"Don Joe\",\n        \"phone\": \"5500998765432\",\n        \"email\": \"example@email.com\",\n        \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n        \"zip_code\": \"617600000\",\n        \"pets\": [\n            {\n                \"name\": \"Lilo\",\n                \"species\": \"dog\",\n                \"carry\": \"s\",\n                \"weight\": 5,\n                \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n                \"_id\": \"64c164fe4234c0e539203f71\"\n            },\n            {\n                \"name\": \"Milo\",\n                \"species\": \"cat\",\n                \"carry\": \"l\",\n                \"weight\": 10,\n                \"date_of_birth\": \"1998-06-25T16:40:00.000Z\",\n                \"_id\": \"64c165db4234c0e539203f75\"\n            }\n        ],\n        \"__v\": 1\n    }\n}\n```"
+				"description": "### You must provide tutorId as it is dynamic\n\n##### Returns the updated tutor object:\n\n``` json\n{\n  \"_id\": \"64c164fe4234c0e539203f70\",\n  \"name\": \"Don Joe\",\n  \"phone\": \"5500998765432\",\n  \"email\": \"example@email.com\",\n  \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n  \"zip_code\": \"617600000\",\n  \"pets\": [\n    {\n      \"name\": \"Lilo\",\n      \"species\": \"dog\",\n      \"carry\": \"s\",\n      \"weight\": 5,\n      \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n      \"_id\": \"64c164fe4234c0e539203f71\"\n    },\n    {\n      \"name\": \"Milo\",\n      \"species\": \"cat\",\n      \"carry\": \"l\",\n      \"weight\": 10,\n      \"date_of_birth\": \"1998-06-25T16:40:00.000Z\",\n      \"_id\": \"64c165db4234c0e539203f75\"\n    }\n  ],\n  \"__v\": 1\n}\n```"
 			},
 			"response": []
 		},
@@ -216,7 +216,7 @@
 						}
 					]
 				},
-				"description": "### You must provide petId and tutorId as they are dynamic\n\n##### Returns the parent tutor object with the updated pet:\n```json\n{\n    \"pet\": {\n        \"_id\": \"64c15d8e4234c0e539203f66\",\n        \"name\": \"John Doe\",\n        \"phone\": \"5500998765432\",\n        \"email\": \"example@email.com\",\n        \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n        \"zip_code\": \"617600000\",\n        \"pets\": [\n            {\n                \"name\": \"José\",\n                \"species\": \"Papagaio\",\n                \"carry\": \"s\",\n                \"weight\": 5,\n                \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n                \"_id\": \"64c1679b4234c0e539203f7c\"\n            }\n        ],\n        \"__v\": 0\n    }\n}\n```"
+				"description": "### You must provide petId and tutorId as they are dynamic\n\n##### Returns the updated pet:\n\n``` json\n{\n  \"name\": \"José\",\n  \"species\": \"Papagaio\",\n  \"carry\": \"s\",\n  \"weight\": 5,\n  \"date_of_birth\": \"1993-12-12T10:10:00.000Z\",\n  \"_id\": \"64c1679b4234c0e539203f7c\"\n}\n\n ```"
 			},
 			"response": []
 		},
