@@ -1,4 +1,5 @@
-import { Request, Response } from 'express'
+import { Request, Response, NextFunction } from 'express'
+import { createCustomError } from '../middleware/errorHandler'
 import Tutor from '../models/Tutor'
 import wrapper from '../middleware/wrapper'
 
@@ -11,3 +12,14 @@ export const getAllTutors = wrapper(async (_: Request, res: Response) => {
   const tutors = await Tutor.find({})
   res.status(200).json({ tutors })
 })
+
+export const deleteTutor = wrapper(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { id: tutorId } = req.params
+    const tutor = await Tutor.findOneAndDelete({ _id: tutorId })
+    if (!tutor) {
+      return next(createCustomError(404, `No tutor with id : ${tutorId}`))
+    }
+    res.status(200).send()
+  },
+)
