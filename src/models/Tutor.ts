@@ -9,19 +9,19 @@ const TutorSchema = new Schema({
   },
   phone: {
     type: String,
-    default: null,
+    required: true,
   },
   email: {
     type: String,
-    default: null,
+    required: true,
   },
   date_of_birth: {
     type: Date,
-    default: null,
+    required: true,
   },
   zip_code: {
     type: String,
-    default: null,
+    required: true,
   },
   pets: [
     {
@@ -34,7 +34,7 @@ const TutorSchema = new Schema({
       species: {
         type: String,
         trim: true,
-        default: null,
+        required: true,
       },
       carry: {
         type: String,
@@ -44,15 +44,15 @@ const TutorSchema = new Schema({
           values: ['xs', 's', 'm', 'l', 'xl', null],
           message: '{VALUE} is not supported',
         },
-        default: null,
+        required: true,
       },
       weight: {
         type: Number,
-        default: null,
+        required: true,
       },
       date_of_birth: {
         type: Date,
-        default: null,
+        required: true,
       },
     },
   ],
