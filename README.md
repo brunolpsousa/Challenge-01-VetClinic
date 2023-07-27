@@ -140,7 +140,71 @@
 <details>
   <summary>
 
-### 🔵 PUT - Update tutor
+### 🔵 PUT - Replace tutor
+
+  <br>
+</summary>
+
+`http://localhost:3000/tutor/:tutorId`
+
+#### You must provide tutorId as it is dynamic
+
+### Path Variables
+
+- tutorId
+
+##### Returns the updated tutor object:
+
+```json
+{
+  "_id": "64c2daa685b51d061b009276",
+  "name": "J. Robert Oppenheimer",
+  "phone": "0100384789",
+  "email": "example@mail.com",
+  "date_of_birth": "1904-04-22T00:00:00.000Z",
+  "zip_code": "001600000",
+  "pets": []
+}
+```
+
+</details>
+
+<details>
+  <summary>
+
+### 🔵 PUT - Replace pet
+
+  <br>
+</summary>
+
+`http://localhost:3000/pet/:petId/tutor/:tutorId`
+
+#### You must provide petId and tutorId as they are dynamic
+
+### Path Variables
+
+- petId
+- tutorId
+
+##### Returns the updated pet:
+
+```json
+{
+  "name": "Winsley",
+  "species": "worm",
+  "carry": "xs",
+  "weight": 0.1,
+  "date_of_birth": "2021-06-19T00:00:00.000Z",
+  "_id": "64c2df9f6ddfbf6c386cf549"
+}
+```
+
+</details>
+
+<details>
+  <summary>
+
+### 🟣 PATCH - Modify tutor
 
   <br>
 </summary>
@@ -190,7 +254,7 @@
 <details>
   <summary>
 
-### 🔵 PUT - Update pet
+### 🟣 PATCH - Modify pet
 
   <br>
 </summary>
