@@ -24,7 +24,21 @@ export const deleteTutor = wrapper(
   },
 )
 
-export const updateTutor = wrapper(
+export const replaceTutor = wrapper(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { id: tutorId } = req.params
+    const tutor = await Tutor.findOneAndReplace({ _id: tutorId }, req.body, {
+      new: true,
+      runValidators: true,
+    })
+    if (!tutor) {
+      return next(createCustomError(404, `No tutor with id : ${tutorId}`))
+    }
+    res.status(200).json(tutor)
+  },
+)
+
+export const modifyTutor = wrapper(
   async (req: Request, res: Response, next: NextFunction) => {
     const { id: tutorId } = req.params
     const tutor = await Tutor.findOneAndUpdate({ _id: tutorId }, req.body, {
