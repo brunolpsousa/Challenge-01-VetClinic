@@ -271,6 +271,36 @@ git clone https://github.com/brunolpsousa/Challenge-01-VetClinic.git;
 cd Challenge-01-VetClinic
 ```
 
+### Set up the environment:
+
+Create a file named `.env` using `.env.example` as model
+
+<details>
+    <summary>
+Suggested values
+        <br>
+    </summary>
+
+```sh
+NODE_ENV=development
+
+# Server
+
+PORT=3000
+
+# Database
+
+DB_HOST=db
+DB_PORT=27017
+DB_NAME=vetclinic_db
+
+# Mongo Express
+
+MONGO_EXPRESS_PORT=8081
+```
+
+</details>
+
 ### Run it:
 
 ##### Using make
@@ -284,3 +314,7 @@ make
 ```sh
 docker-compose up -d
 ```
+
+### Consume it:
+
+You can use any tool to consume the API, but this repository provides a collection and environment files to be imported by Postman for convenience. You can find them inside ./Postman directory.
