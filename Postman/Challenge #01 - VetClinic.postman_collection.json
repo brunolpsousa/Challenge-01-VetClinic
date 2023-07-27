@@ -145,9 +145,85 @@
 			"response": []
 		},
 		{
-			"name": "Update tutor",
+			"name": "Replace tutor",
 			"request": {
 				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"J. Robert Oppenheimer\",\n    \"phone\": \"0100384789\",\n    \"email\": \"example@mail.com\",\n    \"date_of_birth\": \"1904/04/22\",\n    \"zip_code\": \"001600000\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}:{{PORT}}/tutor/:tutorId",
+					"host": [
+						"{{URL}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"tutor",
+						":tutorId"
+					],
+					"variable": [
+						{
+							"key": "tutorId",
+							"value": null
+						}
+					]
+				},
+				"description": "### You must provide tutorId as it is dynamic\n\n##### Returns the updated tutor object:\n\n```json\n{\n  \"_id\": \"64c2daa685b51d061b009276\",\n  \"name\": \"J. Robert Oppenheimer\",\n  \"phone\": \"0100384789\",\n  \"email\": \"example@mail.com\",\n  \"date_of_birth\": \"1904-04-22T00:00:00.000Z\",\n  \"zip_code\": \"001600000\",\n  \"pets\": []\n}\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "Replace pet",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Winsley\",\n    \"species\": \"worm\",\n    \"carry\": \"xs\",\n    \"weight\": 0.1,\n    \"date_of_birth\":\"6/19/2021\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}:{{PORT}}/pet/:petId/tutor/:tutorId",
+					"host": [
+						"{{URL}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"pet",
+						":petId",
+						"tutor",
+						":tutorId"
+					],
+					"variable": [
+						{
+							"key": "petId",
+							"value": null
+						},
+						{
+							"key": "tutorId",
+							"value": null
+						}
+					]
+				},
+				"description": "### You must provide petId and tutorId as they are dynamic\n\n##### Returns the updated pet:\n\n``` json\n{\n  \"name\": \"Winsley\",\n  \"species\": \"worm\",\n  \"carry\": \"xs\",\n  \"weight\": 0.1,\n  \"date_of_birth\": \"2021-06-19T00:00:00.000Z\",\n  \"_id\": \"64c2df9f6ddfbf6c386cf549\"\n}\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "Modify tutor",
+			"request": {
+				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -180,9 +256,9 @@
 			"response": []
 		},
 		{
-			"name": "Update pet",
+			"name": "Modify pet",
 			"request": {
-				"method": "PUT",
+				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
