@@ -1,5 +1,11 @@
 import { Router } from 'express'
-import { createPet, deletePet, updatePet, getPet } from '../controllers/pet'
+import {
+  createPet,
+  deletePet,
+  replacePet,
+  modifyPet,
+  getPet,
+} from '../controllers/pet'
 
 const router = Router()
 
@@ -7,8 +13,8 @@ router.post('/pet/:tutorId', createPet)
 router
   .route('/pet/:petId/tutor/:tutorId')
   .get(getPet)
-  .put(updatePet)
-  .patch(updatePet)
+  .put(replacePet)
+  .patch(modifyPet)
   .delete(deletePet)
 
 export default router

@@ -3,7 +3,8 @@ import {
   createTutor,
   deleteTutor,
   getAllTutors,
-  updateTutor,
+  replaceTutor,
+  modifyTutor,
 } from '../controllers/tutor'
 
 const router = Router()
@@ -12,8 +13,8 @@ router.get('/tutors', getAllTutors)
 router.post('/tutor', createTutor)
 router
   .route('/tutor/:id')
-  .put(updateTutor)
-  .patch(updateTutor)
+  .put(replaceTutor)
+  .patch(modifyTutor)
   .delete(deleteTutor)
 
 export default router

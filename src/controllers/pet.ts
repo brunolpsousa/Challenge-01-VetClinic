@@ -63,7 +63,38 @@ export const deletePet = wrapper(
   },
 )
 
-export const updatePet = wrapper(
+export const replacePet = wrapper(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { petId, tutorId } = req.params
+    req.body._id = petId
+    const updatePet = await Tutor.findOneAndUpdate(
+      { _id: tutorId, pets: { $elemMatch: { _id: petId } } },
+      { $set: { 'pets.$': req.body } },
+      { new: true, runValidators: true },
+    )
+
+    if (!updatePet) {
+      return next(
+        createCustomError(
+          404,
+          `No pet with id: ${petId} for tutor with id: ${tutorId}`,
+        ),
+      )
+    }
+
+    const returnPet = await Tutor.findOne(
+      {
+        _id: tutorId,
+        pets: { $elemMatch: { _id: req.body._id } },
+      },
+      { 'pets.$': 1 },
+    )
+    const pet = returnPet.pets[0]
+    res.status(200).json(pet)
+  },
+)
+
+export const modifyPet = wrapper(
   async (req: Request, res: Response, next: NextFunction) => {
     const { petId, tutorId } = req.params
     const updatePet = await Tutor.findOneAndUpdate(
