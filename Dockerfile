@@ -7,11 +7,14 @@ USER node
 # Set the working directory to the project root
 WORKDIR /app
 
-# Copy files to container
-COPY --chown=node:node . .
+# Copy the package.json and package-lock.json files
+COPY --chown=node:node package*.json .
 
 # Install the dependencies
-RUN npm install
+RUN npm ci
+
+# Copy the remaining files to the working directory
+COPY --chown=node:node . .
 
 # Expose the app's port
 EXPOSE 3000
