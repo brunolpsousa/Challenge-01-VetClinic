@@ -334,9 +334,16 @@ This project intends to provide the primary technical view of the needs that the
 
 ### Clone the project:
 
+##### HTTPS
+
 ```sh
-git clone https://github.com/brunolpsousa/Challenge-01-VetClinic.git;
-cd Challenge-01-VetClinic
+git clone https://github.com/brunolpsousa/Challenge-01-VetClinic.git && cd Challenge-01-VetClinic
+```
+
+##### SSH
+
+```sh
+git clone git@github.com:brunolpsousa/Challenge-01-VetClinic.git && cd Challenge-01-VetClinic
 ```
 
 ### Set up the environment:
