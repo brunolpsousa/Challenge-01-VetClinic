@@ -1,5 +1,7 @@
 # Challenge #01 - VetClinic
 
+This is a POC microservice for a hypothetical veterinary franchise, intended to be used by all owned clinics for internal client and attendances management. This project intends to provide the primary technical view of the needs that the client has.
+
 ## Routes
 
 <details>
@@ -356,7 +358,7 @@ PORT=3000
 
 DB_HOST=db
 DB_PORT=27017
-DB_NAME=vetclinic_db
+DB_NAME=vetclinic
 
 # Mongo Express
 
