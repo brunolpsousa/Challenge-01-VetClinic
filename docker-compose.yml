@@ -7,6 +7,14 @@ services:
     image: mongo:6.0.8
     ports:
       - ${DB_PORT}:27017
+    networks:
+      - backend
+    volumes:
+      - type: bind
+        source: data/db
+        target: /data/db
+        bind:
+          create_host_path: true
     environment:
       MONGO_INITDB_DATABASE: ${DB_NAME}
 
@@ -15,6 +23,14 @@ services:
     restart: always
     ports:
       - ${MONGO_EXPRESS_PORT}:8081
+    networks:
+      - backend
+    volumes:
+      - type: bind
+        source: data/me
+        target: /data/me
+        bind:
+          create_host_path: true
     environment:
       ME_CONFIG_MONGODB_URL: mongodb://db:${DB_PORT}/
 
@@ -29,6 +45,8 @@ services:
       - ${PORT}:3000
     env_file:
       - .env
+    networks:
+      - backend
     volumes:
       - .:/app
     working_dir: /app
@@ -38,3 +56,20 @@ services:
       options:
         max-size: '10m'
         max-file: '5'
+
+networks:
+  frontend:
+    name: frontend
+    driver: bridge
+  backend:
+    name: backend
+    driver: bridge
+
+volumes:
+  data:
+    name: mongo
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind,nolock,soft,rw'
+      device: './data'
