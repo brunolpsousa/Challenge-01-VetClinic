@@ -2,11 +2,10 @@ version: '3.8'
 
 services:
   db:
-    container_name: ${DB_HOST}
-    restart: always
+    container_name: mongodb
     image: mongo:6.0.8
     ports:
-      - ${DB_PORT}:27017
+      - ${DB_PORT}:${DB_PORT}
     networks:
       - backend
     volumes:
@@ -17,12 +16,14 @@ services:
           create_host_path: true
     environment:
       MONGO_INITDB_DATABASE: ${DB_NAME}
+    command: mongod --port ${DB_PORT}
+    restart: always
 
   mongo-express:
+    container_name: mongo-express
     image: mongo-express
-    restart: always
     ports:
-      - ${MONGO_EXPRESS_PORT}:8081
+      - ${MONGO_EXPRESS_PORT}:${MONGO_EXPRESS_PORT}
     networks:
       - backend
     volumes:
@@ -32,30 +33,35 @@ services:
         bind:
           create_host_path: true
     environment:
-      ME_CONFIG_MONGODB_URL: mongodb://db:${DB_PORT}/
+      ME_CONFIG_MONGODB_PORT: ${DB_PORT}
+      ME_CONFIG_MONGODB_SERVER: ${DB_HOST}
+      VCAP_APP_PORT: ${MONGO_EXPRESS_PORT}
+    restart: unless-stopped
 
   api:
     depends_on:
       - db
     container_name: api
-    restart: always
-    build: .
-    user: node:node
-    ports:
-      - ${PORT}:3000
-    env_file:
-      - .env
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    working_dir: /app
     networks:
       - backend
     volumes:
       - .:/app
-    working_dir: /app
-    command: npm start
+    env_file:
+      - .env
+    user: node:node
+    ports:
+      - ${PORT}:${PORT}
     logging:
       driver: 'json-file'
       options:
         max-size: '10m'
         max-file: '5'
+    command: npm start
+    restart: always
 
 networks:
   frontend:
