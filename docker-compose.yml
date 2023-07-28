@@ -16,6 +16,12 @@ services:
           create_host_path: true
     environment:
       MONGO_INITDB_DATABASE: ${DB_NAME}
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:${DB_PORT}/test --quiet
+      interval: 2s
+      timeout: 2s
+      retries: 5
+      start_period: 1s
     command: mongod --port ${DB_PORT}
     restart: always
 
@@ -37,10 +43,11 @@ services:
       ME_CONFIG_MONGODB_SERVER: ${DB_HOST}
       VCAP_APP_PORT: ${MONGO_EXPRESS_PORT}
     restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
 
   api:
-    depends_on:
-      - db
     container_name: api
     build:
       context: .
@@ -62,6 +69,9 @@ services:
         max-file: '5'
     command: npm start
     restart: always
+    depends_on:
+      db:
+        condition: service_healthy
 
 networks:
   frontend:
