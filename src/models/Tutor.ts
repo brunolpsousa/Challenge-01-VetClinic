@@ -41,8 +41,9 @@ const TutorSchema = new Schema({
         trim: true,
         enum: {
           // Extra small, Small, Medium, Large, Extra large
-          values: ['xs', 's', 'm', 'l', 'xl', null],
-          message: '{VALUE} is not supported',
+          values: ['xs', 's', 'm', 'l', 'xl'],
+          message:
+            '{VALUE} is not supported. Must be one of the following: xs, s, m, l, xl',
         },
         required: true,
       },
