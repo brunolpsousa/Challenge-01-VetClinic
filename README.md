@@ -1,6 +1,8 @@
 # Challenge #01 - VetClinic
 
-This is a POC microservice for a hypothetical veterinary franchise, intended to be used by all owned clinics for internal client and attendances management. This project intends to provide the primary technical view of the needs that the client has.
+This is a POC microservice for a hypothetical veterinary franchise, intended to be used by all owned clinics for internal client and attendances management.
+
+This project intends to provide the primary technical view of the needs that the client has.
 
 ## Routes
 
@@ -12,7 +14,7 @@ This is a POC microservice for a hypothetical veterinary franchise, intended to 
   <br>
 </summary>
 
-`http://localhost:3000/tutors`
+`/tutors`
 
 ##### Returns all tutors in database:
 
@@ -48,7 +50,7 @@ This is a POC microservice for a hypothetical veterinary franchise, intended to 
   <br>
 </summary>
 
-`http://localhost:3000/pet/:petId/tutor/:tutorId`
+`/pet/:petId/tutor/:tutorId`
 
 #### You must provide petId and tutorId as they are dynamic
 
@@ -80,7 +82,7 @@ This is a POC microservice for a hypothetical veterinary franchise, intended to 
   <br>
 </summary>
 
-`http://localhost:3000/tutor`
+`/tutor`
 
 ##### Returns the created tutor object:
 
@@ -116,7 +118,7 @@ This is a POC microservice for a hypothetical veterinary franchise, intended to 
   <br>
 </summary>
 
-`http://localhost:3000/pet/:tutorId`
+`/pet/:tutorId`
 
 #### You must provide tutorId as it is dynamic
 
@@ -147,7 +149,7 @@ This is a POC microservice for a hypothetical veterinary franchise, intended to 
   <br>
 </summary>
 
-`http://localhost:3000/tutor/:tutorId`
+`/tutor/:tutorId`
 
 #### You must provide tutorId as it is dynamic
 
@@ -179,7 +181,7 @@ This is a POC microservice for a hypothetical veterinary franchise, intended to 
   <br>
 </summary>
 
-`http://localhost:3000/pet/:petId/tutor/:tutorId`
+`/pet/:petId/tutor/:tutorId`
 
 #### You must provide petId and tutorId as they are dynamic
 
@@ -211,7 +213,7 @@ This is a POC microservice for a hypothetical veterinary franchise, intended to 
   <br>
 </summary>
 
-`http://localhost:3000/tutor/:tutorId`
+`/tutor/:tutorId`
 
 #### You must provide tutorId as it is dynamic
 
@@ -261,7 +263,7 @@ This is a POC microservice for a hypothetical veterinary franchise, intended to 
   <br>
 </summary>
 
-`http://localhost:3000/pet/:petId/tutor/:tutorId`
+`/pet/:petId/tutor/:tutorId`
 
 #### You must provide petId and tutorId as they are dynamic
 
@@ -293,7 +295,7 @@ This is a POC microservice for a hypothetical veterinary franchise, intended to 
   <br>
 </summary>
 
-`http://localhost:3000/tutor/:tutorId`
+`/tutor/:tutorId`
 
 #### You must provide tutorId as it is dynamic
 
@@ -313,7 +315,7 @@ This is a POC microservice for a hypothetical veterinary franchise, intended to 
   <br>
 </summary>
 
-`http://localhost:3000/pet/:petId/tutor/:tutorId`
+`/pet/:petId/tutor/:tutorId`
 
 #### You must provide petId and tutorId as they are dynamic
 
