@@ -1,16 +1,24 @@
 include .env
 
-.PHONY: up
-
 up:
 	docker-compose up -d
-
-.PHONY: down
 
 down:
 	docker-compose down
 
-.PHONY: logs
+stop:
+	docker-compose stop
 
-logs:
+restart:
+	docker-compose restart
+
+log:
 	docker-compose logs -f
+
+test:
+	docker-compose run --rm test
+
+coverage:
+	docker-compose run -it --rm test npm run coverage
+
+.PHONY: up down stop restart log test coverage

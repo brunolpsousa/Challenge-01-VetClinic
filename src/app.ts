@@ -6,7 +6,9 @@ import tutorsRouter from './routes/tutors'
 require('dotenv').config()
 
 const app = express()
+const { DB_PORT, DB_HOST, DB_NAME } = process.env
 const PORT = process.env.PORT || 3000
+const URI = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`
 
 app.use(express.json())
 
@@ -20,7 +22,7 @@ app.use((_: express.Request, res: express.Response) =>
 
 const server = async () => {
   try {
-    await connectDB()
+    await connectDB(URI)
     app.listen(PORT, () => console.log(`Listening on port ${PORT}...`))
   } catch (error) {
     console.log(error)
