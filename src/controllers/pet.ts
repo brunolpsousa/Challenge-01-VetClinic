@@ -11,7 +11,7 @@ export const createPet = wrapper(async (req: Request, res: Response) => {
     { new: true, runValidators: true },
   )
   const pet = newPet.pets[newPet.pets.length - 1]
-  return res.status(200).json(pet)
+  return res.status(201).json(pet)
 })
 
 export const getPet = wrapper(
