@@ -22,7 +22,7 @@ services:
       timeout: 2s
       retries: 5
       start_period: 1s
-    command: mongod --port ${DB_PORT}
+    command: mongod --port ${DB_PORT} --logpath /data/db/logs
     restart: always
 
   mongo-express:
@@ -67,8 +67,35 @@ services:
       options:
         max-size: '10m'
         max-file: '5'
-    command: npm start
+    command: npm run dev
     restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+
+  test:
+    container_name: test
+    profiles:
+      - test
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    working_dir: /app
+    networks:
+      - backend
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    user: node:node
+    ports:
+      - 3999:${PORT}
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '5'
+    command: npm test
     depends_on:
       db:
         condition: service_healthy
