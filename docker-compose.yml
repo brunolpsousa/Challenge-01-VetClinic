@@ -49,16 +49,18 @@ services:
 
   api:
     container_name: api
+    working_dir: /app
     build:
       context: .
       dockerfile: ./Dockerfile
-    working_dir: /app
     networks:
       - backend
     volumes:
-      - .:/app
+      - ./src:/app/src
     env_file:
       - .env
+    environment:
+      NODE_ENV: dev
     user: node:node
     ports:
       - ${PORT}:${PORT}
@@ -77,16 +79,18 @@ services:
     container_name: test
     profiles:
       - test
+    working_dir: /app
     build:
       context: .
       dockerfile: ./Dockerfile
-    working_dir: /app
     networks:
       - backend
     volumes:
-      - .:/app
+      - ./src:/app/src
     env_file:
       - .env
+    environment:
+      NODE_ENV: dev
     user: node:node
     ports:
       - 3999:${PORT}

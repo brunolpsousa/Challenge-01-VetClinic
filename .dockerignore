@@ -14,7 +14,8 @@ data
 tests
 *.local
 .next
-.env
+.git*
+*.md
 
 # Editor directories and files
 .vscode/*
