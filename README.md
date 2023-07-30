@@ -357,20 +357,15 @@ Suggested values
     </summary>
 
 ```sh
-NODE_ENV=development
-
 # Server
-
 PORT=3000
 
 # Database
-
 DB_HOST=db
 DB_PORT=27017
 DB_NAME=vetclinic
 
 # Mongo Express
-
 MONGO_EXPRESS_PORT=8081
 ```
 
@@ -392,4 +387,4 @@ docker-compose up -d
 
 ### Consume it:
 
-You can use any tool to consume the API, but this repository provides a collection and environment files to be imported by Postman for convenience. You can find them inside ./Postman directory.
+You can use any tool to consume the API, but this repository provides a collection and environment files to be imported by Postman for convenience. You can find them inside Postman directory.
