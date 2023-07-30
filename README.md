@@ -388,3 +388,29 @@ docker-compose up -d
 ### Consume it:
 
 You can use any tool to consume the API, but this repository provides a collection and environment files to be imported by Postman for convenience. You can find them inside Postman directory.
+
+### Test it:
+
+This project uses [Vitest](https://vitest.dev) / [supertest](https://github.com/ladjs/supertest) to implement unit and integration testing.
+
+```
+make test
+```
+
+or
+
+```
+docker-compose run --rm test
+```
+
+There is also a test coverage view:
+
+```
+make coverage
+```
+
+or
+
+```
+docker-compose run -it --rm test npm run coverage
+```
