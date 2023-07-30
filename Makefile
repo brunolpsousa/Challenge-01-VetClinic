@@ -1,7 +1,10 @@
 include .env
 
-up:
+upd:
 	docker-compose up -d
+
+up:
+	docker-compose up
 
 down:
 	docker-compose down
@@ -12,7 +15,10 @@ stop:
 restart:
 	docker-compose restart
 
-log:
+recreate:
+	docker-compose up -d --force-recreate
+
+logs:
 	docker-compose logs -f
 
 test:
@@ -21,4 +27,4 @@ test:
 coverage:
 	docker-compose run -it --rm test npm run coverage
 
-.PHONY: up down stop restart log test coverage
+.PHONY: upd up down stop restart recreate logs test coverage
