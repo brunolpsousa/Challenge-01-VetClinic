@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, expectTypeOf, it } from 'vitest'
 import { v4 } from 'uuid'
-import connectDB from '../db/db'
+import connectDB from '@db/db'
 import Tutor from './Tutor'
 
 const { DB_HOST, DB_PORT } = process.env
@@ -91,7 +91,7 @@ describe('Pet Carry', () => {
 
   it('should fail with an empty carry value', () => {
     const newTutor = () => {
-      baseTutor.pets.carry = null
+      baseTutor.pets.carry = ''
       return new Tutor(baseTutor, { runValidators: true }).save()
     }
     expect(newTutor()).rejects.toThrowError(
@@ -111,7 +111,7 @@ describe('Pet Carry', () => {
 describe('Pet Weight', () => {
   it('should fail with an empty weight', () => {
     const newTutor = () => {
-      baseTutor.pets.weight = null
+      baseTutor.pets.weight = null!
       return new Tutor(baseTutor, { runValidators: true }).save()
     }
     expect(newTutor()).rejects.toThrowError(
