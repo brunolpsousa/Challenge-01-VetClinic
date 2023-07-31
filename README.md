@@ -409,5 +409,5 @@ make coverage
 or
 
 ```
-docker-compose run -it --rm api npm run coverage
+docker-compose run --rm api npm run coverage
 ```
