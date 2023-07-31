@@ -1,17 +1,17 @@
 import express from 'express'
-import connectDB from './db/db'
-import errorHandler from './middleware/errorHandler'
-import petsRouter from './routes/pets'
-import tutorsRouter from './routes/tutors'
+import connectDB from '@db/db'
+import errorHandler from '@middleware/errorHandler'
+import petsRouter from '@routes/pets'
+import tutorsRouter from '@routes/tutors'
 import swaggerUi from 'swagger-ui-express'
 import swaggerDocs from './swagger.json'
 require('dotenv').config()
 
-const app = express()
 const { DB_PORT, DB_HOST, DB_NAME } = process.env
 const PORT = process.env.PORT || 3000
 const URI = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`
 
+const app = express()
 app.use(express.json())
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
