@@ -4,7 +4,17 @@ This is a POC microservice for a hypothetical veterinary franchise, intended to 
 
 This project intends to provide the primary technical view of the needs that the client has.
 
+## Swagger
+
+There is a `/docs` route dedicated to Swagger documentation.
+
+<details>
+  <summary>
+
 ## Routes
+
+  <br>
+</summary>
 
 <details>
   <summary>
