@@ -4,6 +4,8 @@ This is a POC microservice for a hypothetical veterinary franchise, intended to 
 
 This project intends to provide the primary technical view of the needs that the client has.
 
+Bruno Sousa - bruno.sousa.pb@compasso.com.br
+
 ## Swagger
 
 There is a `/docs` route dedicated to Swagger documentation.
