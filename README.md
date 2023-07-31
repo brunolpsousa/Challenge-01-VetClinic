@@ -16,7 +16,7 @@ This project intends to provide the primary technical view of the needs that the
 
 `/tutors`
 
-##### Returns all tutors in database:
+Returns all tutors in database:
 
 ```json
 {
@@ -52,14 +52,12 @@ This project intends to provide the primary technical view of the needs that the
 
 `/pet/:petId/tutor/:tutorId`
 
-#### You must provide petId and tutorId as they are dynamic
-
-### Path Variables
+##### Path Variables
 
 - petId
 - tutorId
 
-##### Returns a pet with the corresponding id:
+Returns a pet with the corresponding id:
 
 ```json
 {
@@ -84,7 +82,7 @@ This project intends to provide the primary technical view of the needs that the
 
 `/tutor`
 
-##### Returns the created tutor object:
+Returns the created tutor object:
 
 ```json
 {
@@ -120,13 +118,11 @@ This project intends to provide the primary technical view of the needs that the
 
 `/pet/:tutorId`
 
-#### You must provide tutorId as it is dynamic
-
-### Path Variables
+##### Path Variables
 
 - tutorId
 
-##### Returns the created pet:
+Returns the created pet:
 
 ```json
 {
@@ -151,13 +147,11 @@ This project intends to provide the primary technical view of the needs that the
 
 `/tutor/:tutorId`
 
-#### You must provide tutorId as it is dynamic
-
-### Path Variables
+##### Path Variables
 
 - tutorId
 
-##### Returns the updated tutor object:
+Returns the updated tutor object:
 
 ```json
 {
@@ -183,14 +177,12 @@ This project intends to provide the primary technical view of the needs that the
 
 `/pet/:petId/tutor/:tutorId`
 
-#### You must provide petId and tutorId as they are dynamic
-
-### Path Variables
+##### Path Variables
 
 - petId
 - tutorId
 
-##### Returns the updated pet:
+Returns the updated pet:
 
 ```json
 {
@@ -215,13 +207,11 @@ This project intends to provide the primary technical view of the needs that the
 
 `/tutor/:tutorId`
 
-#### You must provide tutorId as it is dynamic
-
-### Path Variables
+##### Path Variables
 
 - tutorId
 
-##### Returns the updated tutor object:
+Returns the updated tutor object:
 
 ```json
 {
@@ -265,14 +255,12 @@ This project intends to provide the primary technical view of the needs that the
 
 `/pet/:petId/tutor/:tutorId`
 
-#### You must provide petId and tutorId as they are dynamic
-
-### Path Variables
+##### Path Variables
 
 - petId
 - tutorId
 
-##### Returns the updated pet:
+Returns the updated pet:
 
 ```json
 {
@@ -297,13 +285,11 @@ This project intends to provide the primary technical view of the needs that the
 
 `/tutor/:tutorId`
 
-#### You must provide tutorId as it is dynamic
-
-### Path Variables
+##### Path Variables
 
 - tutorId
 
-##### Returns status code 200
+Returns status code 200
 
 </details>
 
@@ -317,14 +303,14 @@ This project intends to provide the primary technical view of the needs that the
 
 `/pet/:petId/tutor/:tutorId`
 
-#### You must provide petId and tutorId as they are dynamic
-
-### Path Variables
+##### Path Variables
 
 - petId
 - tutorId
 
-##### Returns status code 200
+Returns status code 200
+
+</details>
 
 </details>
 
@@ -332,29 +318,30 @@ This project intends to provide the primary technical view of the needs that the
 
 ## How to run
 
-### Clone the project:
+#### Clone the project:
 
-##### HTTPS
+###### HTTPS
 
 ```sh
 git clone https://github.com/brunolpsousa/Challenge-01-VetClinic.git && cd Challenge-01-VetClinic
 ```
 
-##### SSH
+###### SSH
 
 ```sh
 git clone git@github.com:brunolpsousa/Challenge-01-VetClinic.git && cd Challenge-01-VetClinic
 ```
 
-### Set up the environment:
+#### Set up the environment:
 
-Create a file named `.env` using `.env.example` as model
+Create a file named `.env` using `.env.example` as model.
 
-<details>
-    <summary>
-Suggested values
-        <br>
-    </summary>
+<details> <summary>
+
+###### Suggested values
+
+<br>
+</summary>
 
 ```sh
 # Server
@@ -371,25 +358,25 @@ MONGO_EXPRESS_PORT=8081
 
 </details>
 
-### Run it:
+## Run it:
 
-##### Using make
+###### Using make
 
 ```sh
 make
 ```
 
-##### Using Docker
+###### Using Docker
 
 ```sh
 docker-compose up -d
 ```
 
-### Consume it:
+## Consume it:
 
-You can use any tool to consume the API, but this repository provides a collection and environment files to be imported by Postman for convenience. You can find them inside Postman directory.
+You can use any tool to consume the API, but this repository provides a collection and environment files to be imported by [Postman](https://www.postman.com) or [Hoppscotch](https://hoppscotch.io) for convenience. You can find them inside Postman directory.
 
-### Test it:
+## Test it:
 
 This project uses [Vitest](https://vitest.dev) / [supertest](https://github.com/ladjs/supertest) to implement unit and integration testing.
 
