@@ -2,14 +2,14 @@ import { Request, Response, NextFunction } from 'express'
 
 class CustomAPIError extends Error {
   statusCode: number
-  constructor(message: string, statusCode: number) {
+  constructor(statusCode: number, message: string) {
     super(message)
     this.statusCode = statusCode
   }
 }
 
 export const createCustomError = (statusCode: number, msg: string) => {
-  return new CustomAPIError(msg, statusCode)
+  return new CustomAPIError(statusCode, msg)
 }
 
 export default function (
