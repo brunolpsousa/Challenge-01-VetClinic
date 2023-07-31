@@ -5,7 +5,7 @@ import {
   getAllTutors,
   replaceTutor,
   modifyTutor,
-} from '../controllers/tutor'
+} from '@controllers/tutor'
 
 const router = Router()
 

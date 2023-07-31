@@ -4,10 +4,10 @@ import {
   deleteTutor,
   replaceTutor,
   modifyTutor,
-} from '../controllers/tutor'
+} from '@controllers/tutor'
 import { beforeAll, describe, expect, it } from 'vitest'
 import { v4 } from 'uuid'
-import connectDB from '../db/db'
+import connectDB from '@db/db'
 import express from 'express'
 import supertest from 'supertest'
 

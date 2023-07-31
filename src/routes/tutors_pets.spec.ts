@@ -4,11 +4,11 @@ import {
   deletePet,
   replacePet,
   modifyPet,
-} from '../controllers/pet'
-import { createTutor } from '../controllers/tutor'
+} from '@controllers/pet'
+import { createTutor } from '@controllers/tutor'
 import { beforeAll, describe, it } from 'vitest'
 import { v4 } from 'uuid'
-import connectDB from '../db/db'
+import connectDB from '@db/db'
 import express from 'express'
 import supertest from 'supertest'
 
