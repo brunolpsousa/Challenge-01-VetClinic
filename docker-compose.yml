@@ -75,35 +75,6 @@ services:
       db:
         condition: service_healthy
 
-  test:
-    container_name: test
-    profiles:
-      - test
-    working_dir: /app
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    networks:
-      - backend
-    volumes:
-      - ./src:/app/src
-    env_file:
-      - .env
-    environment:
-      NODE_ENV: dev
-    user: node:node
-    ports:
-      - 3999:${PORT}
-    logging:
-      driver: 'json-file'
-      options:
-        max-size: '10m'
-        max-file: '5'
-    command: npm test
-    depends_on:
-      db:
-        condition: service_healthy
-
 networks:
   frontend:
     name: frontend
