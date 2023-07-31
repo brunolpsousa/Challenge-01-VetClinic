@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
-import { createCustomError } from '../middleware/errorHandler'
-import Tutor from '../models/Tutor'
-import wrapper from '../middleware/wrapper'
+import { createCustomError } from '@middleware/errorHandler'
+import Tutor from '@models/Tutor'
+import wrapper from '@middleware/wrapper'
 
 export const createTutor = wrapper(async (req: Request, res: Response) => {
   const tutor = await Tutor.create(req.body)

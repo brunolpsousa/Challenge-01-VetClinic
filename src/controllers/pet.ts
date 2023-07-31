@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
-import { createCustomError } from '../middleware/errorHandler'
-import Tutor from '../models/Tutor'
-import wrapper from '../middleware/wrapper'
+import { createCustomError } from '@middleware/errorHandler'
+import Tutor from '@models/Tutor'
+import wrapper from '@middleware/wrapper'
 
 export const createPet = wrapper(async (req: Request, res: Response) => {
   const { tutorId } = req.params
@@ -90,7 +90,7 @@ export const replacePet = wrapper(
       },
       { 'pets.$': 1 },
     )
-    const pet = returnPet.pets[0]
+    const pet = returnPet!.pets[0]
     res.status(200).json(pet)
   },
 )
@@ -128,7 +128,7 @@ export const modifyPet = wrapper(
       },
       { 'pets.$': 1 },
     )
-    const pet = returnPet.pets[0]
+    const pet = returnPet!.pets[0]
     res.status(200).json(pet)
   },
 )
