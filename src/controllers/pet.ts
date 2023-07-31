@@ -10,6 +10,7 @@ export const createPet = wrapper(async (req: Request, res: Response) => {
     { $push: { pets: req.body } },
     { new: true, runValidators: true },
   )
+  if (!newPet) throw createCustomError(404, `No tutor with id : ${tutorId}`)
   const pet = newPet.pets[newPet.pets.length - 1]
   return res.status(201).json(pet)
 })
