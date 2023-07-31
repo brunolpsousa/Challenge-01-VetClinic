@@ -1,6 +1,6 @@
 {
   "name": "VetClinic",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Challenge #01 - VetClinic",
   "main": "dist/app.js",
   "scripts": {
