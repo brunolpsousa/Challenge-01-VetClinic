@@ -4,7 +4,7 @@ upd:
 	docker-compose up -d
 
 up:
-	docker-compose up && docker-compose logs -f
+	docker-compose up -d && docker-compose logs -f
 
 down:
 	docker-compose down
