@@ -1,15 +1,10 @@
 import { beforeAll, describe, expect, expectTypeOf, it } from 'vitest'
-import { v4 } from 'uuid'
 import connectDB from '@db/db'
 import Tutor from './Tutor'
 
 const { DB_HOST, DB_PORT } = process.env
-const uuid = () => {
-  return v4().split('-')[4]
-}
 
 const baseTutor = {
-  _id: `${uuid()}`,
   name: 'John Doe',
   phone: '5500998765432',
   email: 'example@email.com',
@@ -128,7 +123,7 @@ describe('Pet Weight', () => {
   })
 })
 
-describe('Tutor Date of Birth', () => {
+describe('Pet Date of Birth', () => {
   it('should fail with an empty date_of_birth', () => {
     const newTutor = () => {
       baseTutor.pets.date_of_birth = ''
