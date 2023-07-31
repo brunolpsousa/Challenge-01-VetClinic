@@ -25,6 +25,6 @@ test:
 	docker-compose run --rm api npm run test
 
 coverage:
-	docker-compose run -it --rm api npm run coverage
+	docker-compose run --rm api npm run coverage
 
 .PHONY: upd up down stop restart recreate logs test coverage
