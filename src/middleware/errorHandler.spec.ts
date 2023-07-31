@@ -26,7 +26,7 @@ describe('Error handler', () => {
   it('shoud have custom message', () => {
     try {
       throw createCustomError(2, 'another test')
-    } catch (e) {
+    } catch (e: any) {
       expect(e.message).toBe('another test')
     }
   })
