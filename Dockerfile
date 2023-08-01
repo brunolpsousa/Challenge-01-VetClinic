@@ -19,5 +19,8 @@ COPY --chown=node:node . .
 # Expose the app's port
 EXPOSE 3000
 
+# Compile code
+RUN npx tsc
+
 # Run the app when the container is started
 CMD [ "npm", "start" ]
