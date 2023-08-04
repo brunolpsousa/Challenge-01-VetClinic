@@ -363,7 +363,7 @@ Create a file named `.env` using `.env.example` as model.
 
 ```sh
 # Server
-PORT=3000
+PORT=5000
 
 # Database
 DB_HOST=db
