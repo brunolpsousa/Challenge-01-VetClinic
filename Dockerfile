@@ -10,17 +10,17 @@ WORKDIR /app
 # Copy the package.json and package-lock.json files
 COPY --chown=node:node package*.json .
 
+# Config NPM
+RUN npm config set audit=false fund=false progress=off install-strategy=shallow
+
 # Install the dependencies
-RUN npm ci
+RUN [ -f package-lock.json ] && npm ci || npm install
 
 # Copy the remaining files to the working directory
 COPY --chown=node:node . .
 
 # Expose the app's port
-EXPOSE 3000
-
-# Compile code
-RUN npx tsc
+EXPOSE 5000
 
 # Run the app when the container is started
 CMD [ "npm", "start" ]
