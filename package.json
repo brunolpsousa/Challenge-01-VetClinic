@@ -2,11 +2,11 @@
   "name": "VetClinic",
   "version": "1.0.0",
   "description": "Challenge #01 - VetClinic",
-  "main": "dist/app.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/app.js",
-    "dev": "tsx watch --clear-screen=false src/app.ts",
+    "start": "node dist",
     "build": "tsc && tsc-alias",
+    "dev": "tsx watch --clear-screen=false src",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
