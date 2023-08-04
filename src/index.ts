@@ -2,6 +2,7 @@ import express from 'express'
 
 import connectDB from '@db/db'
 
+import notFound from '@middleware/notFoundMiddleware'
 import errorHandler from '@middleware/errorMiddleware'
 
 import petRoute from '@routes/petRoute'
@@ -21,9 +22,7 @@ app.use(swaggerRoute)
 app.use(petRoute)
 app.use(tutorRoute)
 
-app.use((_: express.Request, res: express.Response) =>
-  res.status(404).send('Route does not exist'),
-)
+app.use(notFound)
 app.use(errorHandler)
 
 const server = async () => {
