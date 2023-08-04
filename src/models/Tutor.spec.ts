@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, expectTypeOf, it } from 'vitest'
 import { v4 } from 'uuid'
-import connectDB from '@db/db'
+import connectDB from '../db/db'
 import Tutor from './Tutor'
 
 const { DB_HOST, DB_PORT } = process.env
