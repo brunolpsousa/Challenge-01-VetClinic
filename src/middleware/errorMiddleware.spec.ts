@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { createCustomError } from './errorHandler'
-import errorHandler from './errorHandler'
+import { createCustomError } from './errorMiddleware'
+import errorHandler from './errorMiddleware'
 import express from 'express'
 import supertest from 'supertest'
 

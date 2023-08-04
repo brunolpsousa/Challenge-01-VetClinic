@@ -1,5 +1,5 @@
 import swaggerUi from 'swagger-ui-express'
-import swaggerConfig from '@docs/swaggerConfig'
+import swaggerConfig from '@docs/swaggerDoc'
 import { Router } from 'express'
 
 const router = Router()

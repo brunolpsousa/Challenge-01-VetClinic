@@ -4,7 +4,7 @@ import {
   deleteTutor,
   replaceTutor,
   modifyTutor,
-} from '../controllers/tutor'
+} from '../controllers/tutorController'
 import { beforeAll, describe, expect, it } from 'vitest'
 import { v4 } from 'uuid'
 import connectDB from '../db/db'

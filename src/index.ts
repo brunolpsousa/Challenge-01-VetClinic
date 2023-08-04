@@ -2,11 +2,11 @@ import express from 'express'
 
 import connectDB from '@db/db'
 
-import errorHandler from '@middleware/errorHandler'
+import errorHandler from '@middleware/errorMiddleware'
 
-import petsRouter from '@routes/pets'
-import tutorsRouter from '@routes/tutors'
-import swaggerRouter from '@routes/swaggerRoute'
+import petRoute from '@routes/petRoute'
+import tutorRoute from '@routes/tutorRoute'
+import swaggerRoute from '@routes/swaggerRoute'
 
 require('dotenv').config()
 
@@ -17,9 +17,9 @@ const URI = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`
 const app = express()
 app.use(express.json())
 
-app.use(swaggerRouter)
-app.use(petsRouter)
-app.use(tutorsRouter)
+app.use(swaggerRoute)
+app.use(petRoute)
+app.use(tutorRoute)
 
 app.use((_: express.Request, res: express.Response) =>
   res.status(404).send('Route does not exist'),

@@ -5,7 +5,7 @@ import {
   replacePet,
   modifyPet,
   getPet,
-} from '@controllers/pet'
+} from '@controllers/petController'
 
 const router = Router()
 

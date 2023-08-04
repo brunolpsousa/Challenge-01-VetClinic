@@ -4,8 +4,8 @@ import {
   deletePet,
   replacePet,
   modifyPet,
-} from '../controllers/pet'
-import { createTutor } from '../controllers/tutor'
+} from '../controllers/petController'
+import { createTutor } from '../controllers/tutorController'
 import { beforeAll, describe, it } from 'vitest'
 import { v4 } from 'uuid'
 import connectDB from '../db/db'
