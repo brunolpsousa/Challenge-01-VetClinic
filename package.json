@@ -5,8 +5,8 @@
   "main": "dist/app.js",
   "scripts": {
     "start": "node dist/app.js",
-    "build": "tsc",
     "dev": "tsx watch --clear-screen=false src/app.ts",
+    "build": "tsc && tsc-alias",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
@@ -25,6 +25,7 @@
     "@types/uuid": "^9.0.2",
     "@vitest/coverage-v8": "^0.33.0",
     "supertest": "^6.3.3",
+    "tsc-alias": "^1.8.7",
     "tsx": "^3.12.7",
     "typescript": "^5.1.6",
     "uuid": "^9.0.0",
