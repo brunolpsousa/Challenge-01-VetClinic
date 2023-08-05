@@ -1,44 +1,50 @@
 include .env
 
+args = $(shell arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}})
+current_dir = $(notdir $(shell pwd))
+dir = $(subst #,,${current_dir})
+sep = $(shell command -vp docker && echo - || echo _)
+
 upd:
-	docker-compose up -d
+	docker-compose up -d $(call args,)
 
 up:
-	make && make logs
+	make ${args} && make logs
 
 down:
-	docker-compose down
+	docker-compose down $(call args,)
 
 stop:
-	docker-compose stop
+	docker-compose stop $(call args,)
 
 restart:
-	docker-compose restart
+	docker-compose restart $(call args,)
 
 build:
-	docker-compose build --no-cache
+	docker-compose build --no-cache $(call args,)
 
 logs:
 	docker-compose logs -f
 
 sh:
-	docker-compose run --rm api sh
+	docker-compose exec $(call args,api) sh
+
+prod:
+	docker-compose run -e NODE_ENV=production --name api_prod -p 2000:3000 --rm $(call args,api) npm run build && npm start
 
 test:
-	docker-compose run --rm api npm run test
+	docker-compose exec $(call args,api) npm test
 
 coverage:
-	docker-compose run --rm api npm run coverage
+	docker-compose exec $(call args,api) npm run coverage
 
-# This allows us to accept extra arguments (by doing nothing when we get a job that doesn't match, rather than throwing an error).
+rm:
+	docker rmi ${dir}${sep}${args}
+
+rmf:
+	docker rmi ${dir}${sep}${args} -f
+
 %:
 	@:
 
-current_dir = $(notdir $(shell pwd))
-dir = $(subst #,,${current_dir})
-args = $(filter-out $@,$(MAKECMDGOALS))
-
-rm:
-	docker rmi ${dir}-${args}
-
-.PHONY: upd up down stop restart build logs sh test coverage rm
+.PHONY: upd up down stop restart build logs sh prod test coverage rm rmf
