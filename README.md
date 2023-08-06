@@ -405,7 +405,7 @@ make test
 or
 
 ```
-docker-compose run --rm api npm run test
+docker-compose exec api npm test
 ```
 
 There is also a test coverage view:
@@ -417,5 +417,5 @@ make coverage
 or
 
 ```
-docker-compose run --rm api npm run coverage
+docker-compose exec api npm run coverage
 ```
