@@ -43,7 +43,8 @@ sh:
 	docker-compose exec $(call args,api) sh
 
 prod:
-	docker-compose run -e NODE_ENV=production --name api_prod -p 3001:${PORT} --rm $(call args,api) sh -c "npm run build && npm start"
+	docker-compose run -e NODE_ENV=production --name api_prod -p 3001:${PORT} --rm \
+		$(call args,api) sh -c "npm run build && npm start"
 
 test:
 	docker-compose exec $(call args,api) npm test
