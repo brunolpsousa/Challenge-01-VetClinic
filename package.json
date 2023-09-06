@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist",
-    "build": "tsc && tsc-alias",
+    "build": "tsc --project tsconfig.build.json && tsc-alias",
     "dev": "tsx watch --clear-screen=false src",
     "test": "vitest",
     "coverage": "vitest run --coverage"
