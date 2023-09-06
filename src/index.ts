@@ -1,5 +1,6 @@
-import express from 'express'
+import 'dotenv/config'
 
+import express from 'express'
 import connectDB from '@db/db'
 
 import notFound from '@middleware/notFoundMiddleware'
@@ -9,7 +10,6 @@ import petRoute from '@routes/petRoute'
 import tutorRoute from '@routes/tutorRoute'
 import swaggerRoute from '@routes/swaggerRoute'
 
-require('dotenv').config()
 
 const { DB_PORT, DB_HOST, DB_NAME } = process.env
 const PORT = process.env.PORT || 5000
