@@ -1,4 +1,5 @@
 include .env
+ctr = 'api'
 
 # The $(notdir) function in GNU Make takes a list of arguments, separated by spaces.
 # Some functions support escaping spaces with \\, but $(notdir) is not one of them.
@@ -19,48 +20,51 @@ sep = $(shell command -vp docker >/dev/null && echo - || echo _)
 args = $(shell arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}})
 
 upd:
-	docker-compose up -d $(call args,)
+	docker compose up -d $(call args,)
 
 up:
 	make ${args} && make logs
 
 down:
-	docker-compose down $(call args,)
+	docker compose down $(call args,)
 
 stop:
-	docker-compose stop $(call args,)
+	docker compose stop $(call args,)
 
 restart:
-	docker-compose restart $(call args,)
+	docker compose restart $(call args,)
 
 build:
-	docker-compose build --no-cache $(call args,)
+	docker compose build --no-cache $(call args,)
 
 logs:
-	docker-compose logs -f
+	docker compose logs -f
 
 sh:
-	docker-compose exec $(call args,api) sh
+	docker compose exec $(call args,${ctr}) sh
 
 prod:
-	docker-compose run -e NODE_ENV=production --name api_prod -p 3001:${PORT} --rm \
-		$(call args,api) sh -c "npm run build && npm start"
+	docker compose run -e NODE_ENV=production --name ${ctr}_production -p 5001:${PORT} \
+		--rm $(call args,${ctr}) sh -c "npm run build && npm start"
 
 test:
-	docker-compose exec $(call args,api) npm test
+	docker compose exec $(call args,${ctr}) npm test
 
 coverage:
-	docker-compose exec $(call args,api) npm run coverage
+	docker compose exec $(call args,${ctr}) npm run coverage
 
 rm:
-	docker rmi ${dir}${sep}${args}
+	docker rmi ${dir}${sep}$(call args,${ctr})
 
 rmf:
-	docker rmi ${dir}${sep}${args} -f
+	docker rmi ${dir}${sep}$(call args,${ctr}) -f
+
+redeploy:
+	make down; make build; make up
 
 # This allows us to accept extra arguments (by doing nothing when we get a job that
 # doesn't match, rather than throwing an error).
 %:
 	@:
 
-.PHONY: upd up down stop restart build logs sh prod test coverage rm rmf
+.PHONY: upd up down stop restart build logs sh prod test coverage rm rmf relaunch
