@@ -8,7 +8,7 @@ export default defineConfig({
     environment: 'node',
     include: ['./src/**/*.{test,spec}.?(c|m)[jt]s?(x)'],
     coverage: {
-      reportsDirectory: './tests/unit/coverage',
+      reportsDirectory: './data/tests/unit/coverage',
     },
   },
   plugins: [tsconfigPaths()],
