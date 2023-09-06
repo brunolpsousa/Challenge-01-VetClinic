@@ -1,20 +1,20 @@
+import { beforeAll, afterAll, describe, expect, it } from 'vitest'
+import { v4 } from 'uuid'
+import { disconnect } from 'mongoose'
+import connectDB from '../db/db'
+import express from 'express'
+import supertest from 'supertest'
 import {
   createTutor,
   getAllTutors,
   deleteTutor,
   replaceTutor,
   modifyTutor,
-} from '../controllers/tutorController'
-import { beforeAll, describe, expect, it } from 'vitest'
-import { v4 } from 'uuid'
-import connectDB from '../db/db'
-import express from 'express'
-import supertest from 'supertest'
+} from '@controllers/tutorController'
 
-const app = express()
 const { DB_HOST, DB_PORT } = process.env
-
 const id = v4().split('-')[4]
+const app = express()
 
 const baseTutor = {
   _id: id,
@@ -27,6 +27,10 @@ const baseTutor = {
 
 beforeAll(async () => {
   await connectDB(`mongodb://${DB_HOST}:${DB_PORT}/test`)
+})
+
+afterAll(async () => {
+  await disconnect()
 })
 
 app.use(express.json())
@@ -61,7 +65,8 @@ describe('Tutor routes', () => {
     const hasBaseKeys = (res: any) => {
       if (!('name' in res.body)) throw new Error('name not found')
       if (!('email' in res.body)) throw new Error('email not found')
-      if (!('date_of_birth' in res.body)) throw new Error('date_of_birth not found')
+      if (!('date_of_birth' in res.body))
+        throw new Error('date_of_birth not found')
       if (!('zip_code' in res.body)) throw new Error('zip_code not found')
     }
     await supertest(app)

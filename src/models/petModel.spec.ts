@@ -1,5 +1,6 @@
-import { beforeAll, describe, expect, expectTypeOf, it } from 'vitest'
-import connectDB from '../db/db'
+import { beforeAll, afterAll, describe, expect, expectTypeOf, it } from 'vitest'
+import { disconnect } from 'mongoose'
+import connectDB from '@db/db'
 import Tutor from './tutorModel'
 
 const { DB_HOST, DB_PORT } = process.env
@@ -23,13 +24,19 @@ beforeAll(async () => {
   await connectDB(`mongodb://${DB_HOST}:${DB_PORT}/test`)
 })
 
+afterAll(async () => {
+  const res = await Tutor.deleteMany({})
+  console.log('Deleted pets count:', res.deletedCount)
+  await disconnect()
+})
+
 describe('Pet Name', () => {
-  it('should fail with an empty name', () => {
+  it('should fail with an empty name', async () => {
     const newTutor = () => {
       baseTutor.pets.name = ''
       return new Tutor(baseTutor, { runValidators: true }).save()
     }
-    expect(newTutor()).rejects.toThrowError(
+    await expect(newTutor()).rejects.toThrowError(
       'Tutor validation failed: pets.0.name: must provide name',
     )
   })
@@ -44,111 +51,116 @@ describe('Pet Name', () => {
     )
   })
 
-  it('should return an object', () => {
+  it('should return an object', async () => {
     const newTutor = async () => {
       baseTutor.pets.name = 'Lilo'
       return await Tutor.create(baseTutor)
     }
-    expectTypeOf(newTutor()).toBeObject()
+    const tutor = await newTutor()
+    expectTypeOf(tutor).toBeObject()
   })
 })
 
 describe('Pet Species', () => {
-  it('should fail with an empty species', () => {
+  it('should fail with an empty species', async () => {
     const newTutor = () => {
       baseTutor.pets.species = ''
       return new Tutor(baseTutor).save()
     }
-    expect(newTutor()).rejects.toThrowError(
+    await expect(newTutor()).rejects.toThrowError(
       'Tutor validation failed: pets.0.species: Path `species` is required.',
     )
   })
 
-  it('should return an object', () => {
+  it('should return an object', async () => {
     const newTutor = async () => {
       baseTutor.pets.species = 'dog'
       return await Tutor.create(baseTutor)
     }
-    expectTypeOf(newTutor()).toBeObject()
+    const tutor = await newTutor()
+    expectTypeOf(tutor).toBeObject()
   })
 })
 
 describe('Pet Carry', () => {
-  it('should fail with an unsupported carry value', () => {
+  it('should fail with an unsupported carry value', async () => {
     const newTutor = () => {
       baseTutor.pets.carry = 'p'
       return new Tutor(baseTutor, { runValidators: true }).save()
     }
-    expect(newTutor()).rejects.toThrowError(
+    await expect(newTutor()).rejects.toThrowError(
       'Tutor validation failed: pets.0.carry: p is not supported. Must be one of the following: xs, s, m, l, xl',
     )
   })
 
-  it('should fail with an empty carry value', () => {
+  it('should fail with an empty carry value', async () => {
     const newTutor = () => {
       baseTutor.pets.carry = ''
       return new Tutor(baseTutor, { runValidators: true }).save()
     }
-    expect(newTutor()).rejects.toThrowError(
+    await expect(newTutor()).rejects.toThrowError(
       'Tutor validation failed: pets.0.carry: Path `carry` is required.',
     )
   })
 
-  it('should return an object', () => {
+  it('should return an object', async () => {
     const newTutor = async () => {
       baseTutor.pets.carry = 'm'
       return await Tutor.create(baseTutor)
     }
-    expectTypeOf(newTutor()).toBeObject()
+    const tutor = await newTutor()
+    expectTypeOf(tutor).toBeObject()
   })
 })
 
 describe('Pet Weight', () => {
-  it('should fail with an empty weight', () => {
+  it('should fail with an empty weight', async () => {
     const newTutor = () => {
       baseTutor.pets.weight = null!
       return new Tutor(baseTutor, { runValidators: true }).save()
     }
-    expect(newTutor()).rejects.toThrowError(
+    await expect(newTutor()).rejects.toThrowError(
       'Tutor validation failed: pets.0.weight: Path `weight` is required.',
     )
   })
 
-  it('should return an object', () => {
+  it('should return an object', async () => {
     const newTutor = async () => {
       baseTutor.pets.weight = 5
       return await Tutor.create(baseTutor)
     }
-    expectTypeOf(newTutor()).toBeObject()
+    const tutor = await newTutor()
+    expectTypeOf(tutor).toBeObject()
   })
 })
 
 describe('Pet Date of Birth', () => {
-  it('should fail with an empty date_of_birth', () => {
+  it('should fail with an empty date_of_birth', async () => {
     const newTutor = () => {
       baseTutor.pets.date_of_birth = ''
       return new Tutor(baseTutor, { runValidators: true }).save()
     }
-    expect(newTutor()).rejects.toThrowError(
+    await expect(newTutor()).rejects.toThrowError(
       'Tutor validation failed: pets.0.date_of_birth: Path `date_of_birth` is required.',
     )
   })
 
-  it('should fail with date format DD-MM-YYYY', () => {
+  it('should fail with date format DD-MM-YYYY', async () => {
     const newTutor = () => {
       baseTutor.pets.date_of_birth = '22/2/2022'
       return new Tutor(baseTutor, { runValidators: true }).save()
     }
-    expect(newTutor()).rejects.toThrowError(
+    await expect(newTutor()).rejects.toThrowError(
       'Tutor validation failed: pets.0.date_of_birth: Cast to date failed for value "22/2/2022" (type string) at path "date_of_birth"',
     )
   })
 
-  it('should return an object', () => {
+  it('should return an object', async () => {
     const newTutor = async () => {
       baseTutor.pets.date_of_birth = '2220/2/2'
       return await Tutor.create(baseTutor)
     }
-    expectTypeOf(newTutor()).toBeObject()
+    const tutor = await newTutor()
+    expectTypeOf(tutor).toBeObject()
   })
 })

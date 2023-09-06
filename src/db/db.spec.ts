@@ -4,6 +4,6 @@ import connectDB from './db'
 
 it('should connect to db', async () => {
   const mongo = await connectDB(`mongodb://${DB_HOST}:${DB_PORT}/test`)
-  mongo.disconnect()
+  await mongo.disconnect()
   expectTypeOf(mongo).toBeObject()
 })

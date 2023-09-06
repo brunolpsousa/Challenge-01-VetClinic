@@ -1,19 +1,20 @@
+import { beforeAll, afterAll, describe, it } from 'vitest'
+import { createTutor, deleteTutor } from '@controllers/tutorController'
+import { disconnect } from 'mongoose'
+import { v4 } from 'uuid'
+import express from 'express'
+import supertest from 'supertest'
+import connectDB from '@db/db'
 import {
   createPet,
   getPet,
   deletePet,
   replacePet,
   modifyPet,
-} from '../controllers/petController'
-import { createTutor } from '../controllers/tutorController'
-import { beforeAll, describe, it } from 'vitest'
-import { v4 } from 'uuid'
-import connectDB from '../db/db'
-import express from 'express'
-import supertest from 'supertest'
+} from '@controllers/petController'
 
-const app = express()
 const { DB_HOST, DB_PORT } = process.env
+const app = express()
 
 const petId = v4().split('-')[4]
 const tutorId = v4().split('-')[4]
@@ -44,9 +45,15 @@ beforeAll(async () => {
     .expect(201)
 })
 
+afterAll(async () => {
+  await supertest(app).delete(`/tutor/${tutorId}`).expect(200)
+  await disconnect()
+})
+
 app.use(express.json())
 
 app.post('/tutor', createTutor)
+app.delete('/tutor/:id', deleteTutor)
 app.post('/pet/:tutorId', createPet)
 app
   .route('/pet/:petId/tutor/:tutorId')
