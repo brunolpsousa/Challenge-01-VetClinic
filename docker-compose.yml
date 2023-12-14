@@ -4,45 +4,57 @@ services:
   db:
     container_name: mongodb
     image: mongo:6.0.8
+    userns_mode: keep-id
+    environment:
+      MONGO_INITDB_DATABASE: ${DB_NAME}
     ports:
       - ${DB_PORT}:${DB_PORT}
     networks:
       - backend
     volumes:
       - type: bind
-        source: data/db
+        source: ./data/db
         target: /data/db
         bind:
           create_host_path: true
-    environment:
-      MONGO_INITDB_DATABASE: ${DB_NAME}
+    tmpfs:
+      - /tmp
+      - /var/run
+      - /run
+    command: mongod --port ${DB_PORT} --logappend --logpath /data/db/logs
+    restart: on-failure
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:${DB_PORT}/test --quiet
-      interval: 2s
-      timeout: 10s
-      retries: 10
       start_period: 2s
-    command: mongod --port ${DB_PORT} --logpath /data/db/logs
-    restart: always
+      interval: 1s
+      timeout: 5s
+      retries: 30
 
   mongo-express:
     container_name: mongo-express
     image: mongo-express
+    userns_mode: keep-id
+    environment:
+      ME_CONFIG_MONGODB_PORT: ${DB_PORT}
+      ME_CONFIG_MONGODB_SERVER: ${DB_HOST}
+      VCAP_APP_PORT: ${MONGO_EXPRESS_PORT}
     ports:
       - ${MONGO_EXPRESS_PORT}:${MONGO_EXPRESS_PORT}
     networks:
       - backend
     volumes:
       - type: bind
-        source: data/me
+        source: ./data/me
         target: /data/me
         bind:
           create_host_path: true
-    environment:
-      ME_CONFIG_MONGODB_PORT: ${DB_PORT}
-      ME_CONFIG_MONGODB_SERVER: ${DB_HOST}
-      VCAP_APP_PORT: ${MONGO_EXPRESS_PORT}
-    restart: unless-stopped
+    tmpfs:
+      - /tmp
+      - /var/run
+      - /run
+    restart: always
+    healthcheck:
+      test: 'exit 0'
     depends_on:
       db:
         condition: service_healthy
@@ -53,24 +65,24 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    networks:
-      - backend
-    volumes:
-      - ./src:/app/src
+    user: node:node
     env_file:
       - .env
     environment:
       NODE_ENV: dev
-    user: node:node
     ports:
       - ${PORT}:${PORT}
+    networks:
+      - backend
+    volumes:
+      - ./src:/app/src
     logging:
       driver: 'json-file'
       options:
         max-size: '10m'
         max-file: '5'
     command: npm run dev
-    restart: always
+    restart: unless-stopped
     depends_on:
       db:
         condition: service_healthy
@@ -78,14 +90,14 @@ services:
 networks:
   frontend:
     name: frontend
-    driver: bridge
+    # driver: bridge
   backend:
     name: backend
-    driver: bridge
+    # driver: bridge
 
 volumes:
   data:
-    name: mongo
+    name: data
     driver: local
     driver_opts:
       type: 'none'
