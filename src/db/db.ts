@@ -1,8 +1,5 @@
-import { connect, ConnectOptions } from 'mongoose'
+import { connect } from 'mongoose'
 
 export default async (url: string) => {
-  return await connect(url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  } as ConnectOptions)
+  return await connect(url)
 }

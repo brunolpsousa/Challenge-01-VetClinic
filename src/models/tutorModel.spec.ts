@@ -1,12 +1,11 @@
 import { beforeAll, afterAll, describe, expect, expectTypeOf, it } from 'vitest'
-import { disconnect } from 'mongoose'
-import { v4 } from 'uuid'
+import { disconnect, Types } from 'mongoose'
 import connectDB from '@db/db'
 import Tutor from './tutorModel'
 
 const { DB_HOST, DB_PORT } = process.env
 const uuid = () => {
-  return v4().split('-')[4]
+  return new Types.ObjectId().toString()
 }
 
 const baseTutor = {

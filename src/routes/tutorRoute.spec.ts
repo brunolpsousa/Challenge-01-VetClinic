@@ -1,6 +1,5 @@
 import { beforeAll, afterAll, describe, expect, it } from 'vitest'
-import { v4 } from 'uuid'
-import { disconnect } from 'mongoose'
+import { disconnect, Types } from 'mongoose'
 import connectDB from '../db/db'
 import express from 'express'
 import supertest from 'supertest'
@@ -13,7 +12,7 @@ import {
 } from '@controllers/tutorController'
 
 const { DB_HOST, DB_PORT } = process.env
-const id = v4().split('-')[4]
+const id = new Types.ObjectId().toString()
 const app = express()
 
 const baseTutor = {

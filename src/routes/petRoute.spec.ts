@@ -1,7 +1,6 @@
 import { beforeAll, afterAll, describe, it } from 'vitest'
 import { createTutor, deleteTutor } from '@controllers/tutorController'
-import { disconnect } from 'mongoose'
-import { v4 } from 'uuid'
+import { disconnect, Types } from 'mongoose'
 import express from 'express'
 import supertest from 'supertest'
 import connectDB from '@db/db'
@@ -16,8 +15,8 @@ import {
 const { DB_HOST, DB_PORT } = process.env
 const app = express()
 
-const petId = v4().split('-')[4]
-const tutorId = v4().split('-')[4]
+const petId = new Types.ObjectId().toString()
+const tutorId = new Types.ObjectId().toString()
 
 const baseTutor = {
   _id: tutorId,
