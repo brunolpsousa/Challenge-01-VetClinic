@@ -1,0 +1,15 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "root": true,
+  "rules": {
+    "indent": ["warn", 2],
+    "semi": ["warn", "never"],
+    "quotes": ["warn", "single"]
+  },
+  "parserOptions": { "sourceType": "module", "ecmaVersion": 6 },
+  "extends": ["eslint:recommended"]
+}
