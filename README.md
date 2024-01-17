@@ -4,8 +4,6 @@ This is a POC microservice for a hypothetical veterinary franchise, intended to 
 
 This project intends to provide the primary technical view of the needs that the client has.
 
-Bruno Sousa - bruno.sousa.pb@compasso.com.br
-
 ## mongo-express
 
 A [mongo-express](https://hub.docker.com/_/mongo-express) instance is available under the base URL path, i.e. `http://localhost:8081`.
